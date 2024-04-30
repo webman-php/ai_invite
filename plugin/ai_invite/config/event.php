@@ -40,9 +40,10 @@ return [
             $reward->invitee = $userId;
             $reward->percent = $percent;
             $reward->data = json_encode($data);
-            $reward->amount = round($data['price'] * $percent, 2);
+            $reward->amount = round($data['price'] * ($percent / 100), 2);
             $reward->type = 'recharge';
             $reward->save();
+
             // 自动给邀请人增加余额
             $modelTypes = AiModel::pluck('type')->toArray();
             $data['days'] = isset($data['months']) ? $data['months'] * 30 : $data['days'];
