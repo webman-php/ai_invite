@@ -33,7 +33,7 @@ return [
             if (!$aiInvite) {
                 return;
             }
-            $percent = (Invite::getSetting()['percent'] ?? 10)/100;
+            $percent = $aiInvite->percent;
             $inviter = $aiInvite->inviter;
             $reward = new AiInviteReward;
             $reward->inviter = $inviter;
