@@ -47,11 +47,11 @@ return [
             // 自动给邀请人增加余额
             $modelTypes = AiModel::pluck('type')->toArray();
             $data['days'] = isset($data['months']) ? $data['months'] * 30 : $data['days'];
-            $data['days'] = ceil($data['days'] * $percent);
+            $data['days'] = ceil($data['days'] * ($percent/100));
             unset($data['months']);
             foreach ($data as $key => $value) {
                 if (in_array($key, $modelTypes)) {
-                    $data[$key] = ceil($value * $percent);
+                    $data[$key] = ceil($value * ($percent/100));
                 }
             }
             ApiUser::addBalanceByPlanData($inviter, $data);
